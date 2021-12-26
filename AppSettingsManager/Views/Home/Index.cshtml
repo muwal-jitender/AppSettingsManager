@@ -1,8 +1,60 @@
-﻿@{
+﻿@inject Microsoft.Extensions.Configuration.IConfiguration config;
+@{
     ViewData["Title"] = "Home Page";
 }
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+
+<div class="row mb-2">
+    <div class="col-md-6">
+        <div class="card flex-md-row box-shadow h-md-250">
+            <div class="card-body d-flex flex-column align-items-start">
+                <strong class="d-inline-block mb-2 text-primary">SendGrid</strong>
+                <div class"mb-1 text-muted">@ViewBag.SendGridKey</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="card flex-md-row box-shadow h-md-250">
+            <div class="card-body d-flex flex-column align-items-start">
+                <strong class="d-inline-block mb-2 text-primary">Twilio config from controller</strong>
+                <div class"mb-1 text-muted">@ViewBag.AuthToken</div>
+                <div class"mb-1 text-muted">@ViewBag.AccountSid</div>
+                <div class"mb-1 text-muted">@ViewBag.PhoneNumber</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="card flex-md-row box-shadow h-md-250">
+            <div class="card-body d-flex flex-column align-items-start">
+                <strong class="d-inline-block mb-2 text-primary">Twilio Config from view</strong>
+                <div class"mb-1 text-muted">@config.GetSection("Twilio:AuthToken").Value</div>
+                <div class"mb-1 text-muted">@config.GetSection("Twilio:AccountSid").Value</div>
+
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card flex-md-row box-shadow h-md-250">
+            <div class="card-body d-flex flex-column align-items-start">
+                <strong class="d-inline-block mb-2 text-primary">Social Media Settings</strong>
+                <div class"mb-1 text-muted">@ViewBag.FacebookKey</div>
+                <div class"mb-1 text-muted">@ViewBag.GoogleKey</div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card flex-md-row box-shadow h-md-250">
+            <div class="card-body d-flex flex-column align-items-start">
+                <strong class="d-inline-block mb-2 text-primary">Connection String</strong>
+                <div class"mb-1 text-muted">@ViewBag.ConnectionString</div>
+            </div>
+        </div>
+    </div>
+
 </div>
