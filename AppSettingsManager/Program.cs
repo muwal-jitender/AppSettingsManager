@@ -1,7 +1,20 @@
 using AppSettingsManager.Models;
-using Microsoft.Extensions.Options;
 using AppSettingsManager;
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Host.ConfigureAppConfiguration((hostingContext, builder) =>
+{
+    builder.Sources.Clear();
+    builder.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);    
+    builder.AddJsonFile($"appsettings{hostingContext.HostingEnvironment.EnvironmentName}.json", optional: true, reloadOnChange: true);
+    builder.AddJsonFile("customJson.json", optional: true, reloadOnChange: true);
+    if (hostingContext.HostingEnvironment.IsDevelopment())
+    {
+        builder.AddUserSecrets<Program>();
+    }    
+    builder.AddEnvironmentVariables();
+    builder.AddCommandLine(args);
+});
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();

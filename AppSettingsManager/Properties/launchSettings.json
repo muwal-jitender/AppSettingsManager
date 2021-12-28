@@ -22,6 +22,8 @@
       "launchBrowser": true,
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
+        //"SendGridKey": "SendGridKey_From_Environment_Variable",
+        //"Twilio__PhoneNumber": "735985211111 From Environment Variable"
       }
     }
   }
