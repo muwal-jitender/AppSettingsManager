@@ -14,6 +14,12 @@ builder.Host.ConfigureAppConfiguration((hostingContext, builder) =>
     }    
     builder.AddEnvironmentVariables();
     builder.AddCommandLine(args);
+    if(hostingContext.HostingEnvironment.IsDevelopment())
+    {
+        return;
+    }
+    var build = builder.Build();
+    builder.AddAzureKeyVault($"https://{build["KeyValueValut"]}.vault.azure.net/");
 });
 
 // Add services to the container.
